@@ -1,13 +1,19 @@
 import { create } from "zustand";
 
-interface StateProps {
-    currentStep: number;
-    setCurrentStep: (step: number) => void;
-}
+type Coin = string;
 
-const useStore = create<StateProps>((set) => ({
-    currentStep: 1,
-    setCurrentStep: (step: number) => set({ currentStep: step }),
+type CryptoState = {
+    unwatched: Coin[];
+    watched: Coin[];
+    moveCoin: (coin: Coin, toWatched: boolean) => void;
+};
+
+export const useCryptoStore = create<CryptoState>((set) => ({
+    unwatched: ["Bitcoin", "Ethereum"],
+    watched: ["Solana"],
+    moveCoin: (coin, toWatched) =>
+        set((state) => ({
+            unwatched: toWatched ? state.unwatched.filter((c) => c !== coin) : [...state.unwatched, coin],
+            watched: toWatched ? [...state.watched, coin] : state.watched.filter((c) => c !== coin),
+        })),
 }));
-
-export default useStore;
