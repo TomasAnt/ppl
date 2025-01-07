@@ -9,7 +9,23 @@ type CryptoState = {
 };
 
 export const useCryptoStore = create<CryptoState>((set) => ({
-    unwatched: ["Bitcoin", "Ethereum"],
+    unwatched: [
+        "Bitcoin",
+        "Ethereum",
+        "XRP",
+        "Cardano",
+        "Polkadot",
+        "Dogecoin",
+        "Litecoin",
+        "Chainlink",
+        "Avalanche",
+        "Stellar",
+        "Uniswap",
+        "Shiba Inu",
+        "Aave",
+        "Monero",
+        "Algorand",
+    ],
     watched: ["Solana"],
     moveCoin: (coin, toWatched) =>
         set((state) => ({

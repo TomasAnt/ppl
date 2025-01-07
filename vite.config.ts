@@ -7,7 +7,7 @@ export default defineConfig({
     server: {
         proxy: {
             "/api": {
-                target: "https://api.coingecko.com/api/v3",
+                target: "https://api.coincap.io/v2",
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, ""),
             },
