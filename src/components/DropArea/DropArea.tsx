@@ -1,14 +1,29 @@
+import { useDrop } from "react-dnd";
+import { useCryptoStore } from "../../store/store";
 import Coin from "../Coin/Coin";
 import { StyledDropArea, StyledDropAreaTitle } from "./dropArea.styled";
 
+const ItemType = {
+    COIN: "coin",
+};
+
 const DropArea = ({ id, title }: { id: string; title: string }) => {
-    const coins = id === "unwatched" ? ["Bitcoin", "Ethereum"] : ["Dogecoin"];
+    const { unwatched, watched, moveCoin } = useCryptoStore();
+
+    const coins = id === "unwatched" ? unwatched : watched;
+
+    const [, dropRef] = useDrop(() => ({
+        accept: ItemType.COIN,
+        drop: (item: { name: string }) => {
+            moveCoin(item.name, id === "watched");
+        },
+    }));
 
     return (
-        <StyledDropArea>
+        <StyledDropArea ref={dropRef}>
             <StyledDropAreaTitle>{title}</StyledDropAreaTitle>
-            {coins.map((coin, index) => (
-                <Coin key={index} name={coin} />
+            {coins.map((coin) => (
+                <Coin key={coin} name={coin} />
             ))}
         </StyledDropArea>
     );
