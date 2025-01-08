@@ -1,50 +1,41 @@
 import { useState } from "react";
-import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 import { usePriceData } from "../../hooks/usePriceData";
 import {
-    StyledButton,
-    StyledCryptoChart,
-    StyledCryptoChartContainer,
-    StyledCryptoChartHeading,
-    StyledError,
-    StyledLoading,
-    StyledSelectorContainer,
+  ChartContainer,
+  ChartHeading,
+  ErrorMessage,
+  LoadingMessage,
+  SelectorWrapper,
 } from "./chart.styled";
+import Button from "../../components/Button/Button";
+import Graph from "../../components/Graph/Graph";
+
+type RangeOption = "Today" | "Past Week" | "Past Month";
 
 const Chart = ({ coin }: { coin: string }) => {
-    const [range, setRange] = useState("Today");
-    const { data, loading, error } = usePriceData(coin.toLowerCase(), range);
+  const [range, setRange] = useState<RangeOption>("Today");
+  const { data, loading, error } = usePriceData(coin.toLowerCase(), range);
 
-    return (
-        <StyledCryptoChart>
-            <StyledCryptoChartHeading>{coin} Price Chart</StyledCryptoChartHeading>
-            <StyledSelectorContainer>
-                {["Past Month", "Past Week", "Today"].map((option) => (
-                    <StyledButton key={option} onClick={() => setRange(option)} active={range === option}>
-                        {option}
-                    </StyledButton>
-                ))}
-            </StyledSelectorContainer>
-            {loading && <StyledLoading>Loading {coin} data...</StyledLoading>}
-            {error && <StyledError>Error: {error}</StyledError>}
-            {!loading && !error && (
-                <StyledCryptoChartContainer>
-                    <LineChart
-                        width={400}
-                        height={200}
-                        data={data}
-                        margin={{ top: 10, right: 20, bottom: 10, left: 20 }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="time" />
-                        <YAxis />
-                        <Tooltip />
-                        <Line type="monotone" dataKey="price" stroke="#8884d8" />
-                    </LineChart>
-                </StyledCryptoChartContainer>
-            )}
-        </StyledCryptoChart>
-    );
+  const options: RangeOption[] = ["Past Month", "Past Week", "Today"];
+
+  return (
+    <ChartContainer>
+      <ChartHeading>{coin} Price Chart</ChartHeading>
+      <SelectorWrapper>
+        {options.map((option) => (
+          <Button
+            key={option}
+            option={option}
+            setRange={setRange}
+            range={range}
+          />
+        ))}
+      </SelectorWrapper>
+      {loading && <LoadingMessage>Loading {coin} data...</LoadingMessage>}
+      {error && <ErrorMessage>Error: {error}</ErrorMessage>}
+      {!loading && !error && <Graph data={data} />}
+    </ChartContainer>
+  );
 };
 
 export default Chart;
