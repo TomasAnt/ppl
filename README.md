@@ -1,50 +1,20 @@
-# React + TypeScript + Vite
+# Kanban Board: Cryptocurrency Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based Kanban board application to help users track and monitor cryptocurrency prices with real-time charts and drag-and-drop functionality. The project is built using modern web technologies like React, Vite, TypeScript, and Zustand.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Kanban Board** with two columns: **Unwatched Coins**, which lists all available cryptocurrencies, and **Watched Coins**, where users can drag coins to monitor them.  
+- **Drag-and-Drop Functionality** is built using `react-dnd` for intuitive coin management.  
+- **Real-Time Charts** display live price charts for cryptocurrencies in the Watched list using `chart.js`.  
+- **Responsive Design** ensures optimal performance and usability on both mobile and desktop devices.  
+- **Error Handling** provides meaningful error messages and ensures seamless fallback for network/API issues.  
+- **TypeScript Support** ensures robust and type-safe development.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+You need [Node.js](https://nodejs.org/) (v16+ recommended) and [npm](https://www.npmjs.com/) or Yarn to run the project. 
+Clone the repository using `git clone https://github.com/TomasAnt/ppl.git`, navigate into the project folder with `cd ppl`, and install dependencies using `npm install`. 
+To start the development server, use `npm run dev` and visit [http://localhost:5173](http://localhost:5173) in your browser. 
+For a production build, use `npm run build`, and to preview the production build, use `npm run preview`. For code linting, run `npm run lint`.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
