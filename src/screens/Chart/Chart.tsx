@@ -7,8 +7,8 @@ import {
   LoadingMessage,
   SelectorWrapper,
 } from "./chart.styled";
-import Button from "../../components/Button/Button";
-import Graph from "../../components/Graph/Graph";
+import Button from "@components/Button/Button";
+import Graph from "@components/Graph/Graph";
 
 type RangeOption = "Today" | "Past Week" | "Past Month";
 

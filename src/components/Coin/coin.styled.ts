@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledCoin = styled.div`
-  margin: 10px;
+  margin: ${(props) => props.theme.spacings.s10};
   padding: 12px 16px;
   border: 1px solid #dcdcdc;
   border-radius: 12px;
@@ -9,8 +9,8 @@ export const StyledCoin = styled.div`
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1),
     -4px -4px 8px rgba(255, 255, 255, 0.6);
   font-size: 1rem;
-  font-weight: 500;
-  color: #333;
+  font-weight: ${(props) => props.theme.fontWeights.medium};
+  color: ${(props) => props.theme.colors.headingColor};
   text-align: center;
   cursor: grab;
   user-select: none;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledDropArea = styled.div`
   border: 1px solid #d6d6d6;
   border-radius: 8px;
-  padding: 16px;
+  padding: ${(props) => props.theme.spacings.s16};
   width: 50%;
   min-height: 200px;
   background-color: #f9f9f9;
@@ -15,10 +15,10 @@ export const StyledDropArea = styled.div`
   }
 `;
 
-export const StyledDropAreaTitle = styled.h3`
-  font-size: 1rem;
-  color: #333;
-  font-weight: 600;
+export const StyledDropAreaTitle = styled.p`
+  font-size: ${(props) => props.theme.fontSizes.paragraph};
+  color: ${(props) => props.theme.colors.headingColor};
+  font-weight: ${(props) => props.theme.fontWeights.semibold};
   text-align: center;
   margin-bottom: 10px;
 `;

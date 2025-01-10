@@ -9,12 +9,10 @@ interface ButtonProps {
 }
 
 const Button = ({ option, range, setRange }: ButtonProps) => {
+  const isActive = range === option;
+
   return (
-    <StyledButton
-      key={option}
-      active={range === option}
-      onClick={() => setRange(option)}
-    >
+    <StyledButton onClick={() => setRange(option)} $active={isActive}>
       {option}
     </StyledButton>
   );

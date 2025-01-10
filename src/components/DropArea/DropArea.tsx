@@ -1,6 +1,6 @@
 import { useDrop } from "react-dnd";
-import { useCryptoStore } from "../../store/store";
-import Coin from "../Coin/Coin";
+import { useCryptoStore } from "@store/store";
+import Coin from "@components/Coin/Coin";
 import { StyledDropArea, StyledDropAreaTitle } from "./dropArea.styled";
 
 const ItemType = {
